@@ -1,0 +1,19 @@
+{
+  "name": "codex-setup",
+  "version": "1.0.0",
+  "description": "为 OpenAI Codex 桌面版配置国产 AI 模型，国内直连，无需翻墙",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:mac": "electron-builder build --mac",
+    "build:win": "electron-builder build --win",
+    "build": "electron-builder build --mac --win"
+  },
+  "keywords": ["codex", "openai", "deepseek", "qwen", "glm"],
+  "author": "Dnovalab",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^25.0.0"
+  }
+}

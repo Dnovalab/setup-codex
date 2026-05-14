@@ -1,0 +1,386 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f5f7fa;
+  color: #1a1a2e;
+  user-select: none;
+}
+
+.container {
+  width: 560px;
+  margin: 0 auto;
+  padding: 30px 40px 40px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====== 步骤指示器 ====== */
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  gap: 0;
+}
+
+.step {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.step.active {
+  background: #4f6ef7;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(79, 110, 247, 0.3);
+}
+
+.step.done {
+  background: #34c759;
+  color: #fff;
+}
+
+.step-line {
+  width: 50px;
+  height: 2px;
+  background: #e0e0e0;
+  margin: 0 4px;
+}
+
+/* ====== 页面切换 ====== */
+.page {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.page.active {
+  display: flex;
+}
+
+/* ====== Step 1: 欢迎 ====== */
+.logo {
+  font-size: 56px;
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 15px;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.features {
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.feature-item {
+  font-size: 14px;
+  padding: 6px 0;
+  color: #444;
+}
+
+/* ====== 按钮 ====== */
+.btn {
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #4f6ef7;
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #3d5bd9;
+}
+
+.btn-secondary {
+  background: #e8ecf4;
+  color: #444;
+}
+
+.btn-secondary:hover {
+  background: #dce0ea;
+}
+
+.btn-link {
+  background: none;
+  color: #4f6ef7;
+  padding: 6px 0;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 24px;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ====== Step 2: 模型选择 ====== */
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.hint {
+  color: #888;
+  font-size: 13px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.provider-cards {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.provider-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.provider-card:hover {
+  border-color: #4f6ef7;
+}
+
+.provider-card.selected {
+  border-color: #4f6ef7;
+  background: #f0f3ff;
+}
+
+.provider-radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.provider-card.selected .provider-radio {
+  border-color: #4f6ef7;
+}
+
+.provider-card.selected .provider-radio::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: #4f6ef7;
+  border-radius: 50%;
+}
+
+.provider-name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ====== Step 3: API Key ====== */
+.guide-box {
+  width: 100%;
+  background: #f0f7ff;
+  border: 1px solid #d0e4ff;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 20px;
+}
+
+.guide-title {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.guide-text {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.input-group {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: monospace;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #4f6ef7;
+}
+
+.selected-info {
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+}
+
+/* ====== Step 4: 完成 ====== */
+.result-icon {
+  font-size: 56px;
+  margin-bottom: 8px;
+}
+
+.result-details {
+  width: 100%;
+  margin: 12px 0;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  color: #555;
+}
+
+.result-item.success {
+  background: #f0faf0;
+  color: #1a7d1a;
+}
+
+.result-item.error {
+  background: #fef0f0;
+  color: #c41e1e;
+}
+
+.result-tips {
+  text-align: left;
+  width: 100%;
+  margin-top: 8px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.8;
+}
+
+/* ====== Codex 代理指引 ====== */
+.proxy-box {
+  background: #fff8e6;
+  border: 1px solid #ffe0a0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.proxy-title {
+  font-weight: 600;
+  font-size: 13px;
+  color: #cc7700;
+  margin-bottom: 6px;
+}
+
+.proxy-step {
+  color: #555;
+  margin: 4px 0 2px;
+}
+
+.proxy-cmd {
+  background: #2d2d2d;
+  color: #e6e6e6;
+  font-family: "SF Mono", "Fira Code", "Courier New", monospace;
+  font-size: 11px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin: 2px 0 6px;
+}
+
+/* ====== 动画 ====== */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ddd;
+  border-top-color: #4f6ef7;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 8px;
+}
+
+.loading-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #888;
+  font-size: 14px;
+}

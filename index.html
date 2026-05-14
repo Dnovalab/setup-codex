@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAI Codex 一键配置</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- 步骤指示器（4 步） -->
+    <div class="steps">
+      <div class="step active" data-step="1">1</div>
+      <div class="step-line"></div>
+      <div class="step" data-step="2">2</div>
+      <div class="step-line"></div>
+      <div class="step" data-step="3">3</div>
+      <div class="step-line"></div>
+      <div class="step" data-step="4">4</div>
+    </div>
+
+    <!-- ====== Step 1: 欢迎页 ====== -->
+    <div class="page active" id="page-1">
+      <div class="logo">🔧</div>
+      <h1>OpenAI Codex 配置</h1>
+      <p class="subtitle">为 OpenAI Codex 桌面版配置国产 AI 模型<br>国内直连，无需翻墙</p>
+      <div class="features">
+        <div class="feature-item">✅ 不需要翻墙</div>
+        <div class="feature-item">✅ 不需要海外信用卡</div>
+        <div class="feature-item">✅ 只需要一个国内手机号</div>
+      </div>
+      <p style="font-size:12px;color:#999;margin-bottom:24px;text-align:center">⚡ Codex 需要依赖本地代理转发请求，配置后会显示详细指引</p>
+      <button class="btn btn-primary" onclick="goStep(2)">开始配置</button>
+    </div>
+
+    <!-- ====== Step 2: 选择模型 ====== -->
+    <div class="page" id="page-2">
+      <h2>选择国产模型</h2>
+      <p class="hint">选一个 AI 服务商，注册获取 API Key</p>
+      <div class="provider-cards" id="provider-list">
+        <!-- 由 JavaScript 动态生成 -->
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goStep(1)">上一步</button>
+        <button class="btn btn-primary" id="btn-next" onclick="goStep(3)" disabled>下一步</button>
+      </div>
+    </div>
+
+    <!-- ====== Step 3: 输入 API Key ====== -->
+    <div class="page" id="page-3">
+      <h2>输入 API Key</h2>
+      <div class="guide-box" id="register-guide">
+        <div class="guide-title">👉 注册指引</div>
+        <div class="guide-text" id="guide-text">正在加载...</div>
+        <button class="btn btn-link" id="btn-open-register" onclick="openRegister()">
+          打开注册页面 →
+        </button>
+      </div>
+      <div class="input-group">
+        <label for="api-key">粘贴你的 API Key</label>
+        <input type="text" id="api-key" placeholder="以 sk- 开头的密钥..." oninput="checkApiKey()">
+      </div>
+      <div class="selected-info" id="selected-info"></div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goStep(2)">上一步</button>
+        <button class="btn btn-primary" id="btn-apply" onclick="applyConfig()" disabled>应用配置</button>
+      </div>
+    </div>
+
+    <!-- ====== Step 4: 完成 ====== -->
+    <div class="page" id="page-4">
+      <div class="result-icon" id="result-icon">✅</div>
+      <h2 id="result-title">配置完成！</h2>
+      <div class="result-details" id="result-details"></div>
+      <div class="result-tips">
+        <p>📌 接下来三步：</p>
+        <div id="result-tools"></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="goStep(1)">重新配置</button>
+        <button class="btn btn-secondary" onclick="closeWindow()">关闭</button>
+      </div>
+    </div>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
