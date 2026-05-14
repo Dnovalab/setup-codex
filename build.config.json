@@ -1,0 +1,27 @@
+{
+  "appId": "com.dnovalab.codex-setup",
+  "productName": "OpenAI Codex 一键配置",
+  "directories": {
+    "output": "dist"
+  },
+  "files": [
+    "main.js",
+    "preload.js",
+    "src/**/*",
+    "package.json"
+  ],
+  "mac": {
+    "category": "public.app-category.developer-tools",
+    "target": ["dmg"],
+    "artifactName": "${productName}-${version}-mac.${ext}"
+  },
+  "win": {
+    "target": ["nsis"],
+    "artifactName": "${productName}-${version}-win.${ext}"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "language": "2052"
+  }
+}
