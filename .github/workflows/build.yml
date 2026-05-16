@@ -1,1 +1,49 @@
-name: Build and Releaseon:  push:    branches: [main]    tags:      - 'v*'  workflow_dispatch:jobs:  build-mac:    runs-on: macos-latest    steps:      - uses: actions/checkout@v4      - uses: actions/setup-node@v4        with:          node-version: 20      - run: npm install      - run: npm run build:mac      - uses: actions/upload-artifact@v4        with:          name: setup-codex-mac          path: dist/*.dmg  build-win:    runs-on: windows-latest    steps:      - uses: actions/checkout@v4      - uses: actions/setup-node@v4        with:          node-version: 20      - run: npm install      - run: npm run build:win      - uses: actions/upload-artifact@v4        with:          name: setup-codex-win
+name: Build and Release
+
+on:
+  push:
+    branches: [main]
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run build:mac
+      - uses: actions/upload-artifact@v4
+        with:
+          name: setup-codex-mac
+          path: dist/*.dmg
+
+  build-win:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run build:win
+      - uses: actions/upload-artifact@v4
+        with:
+          name: setup-codex-win
+          path: dist/*.exe
+
+  release:
+    needs: [build-mac, build-win]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            setup-codex-mac/*.dmg
+            setup-codex-win/*.exe
